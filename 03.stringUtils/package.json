@@ -1,0 +1,13 @@
+{
+  "name": "string-utils-project",
+  "version": "1.0.0",
+  "description": "String utils with mocha and chai tests",
+  "main": "stringUtils.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "chai": "^5.2.0",
+    "mocha": "^11.5.0"
+  }
+}
