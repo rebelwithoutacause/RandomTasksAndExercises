@@ -1,0 +1,106 @@
+{
+    "info": {
+        "name": "JSONPlaceholder Full CRUD Test",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_postman_id": "crud-test-20250602072552"
+    },
+    "item": [
+        {
+            "name": "GET Post",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://jsonplaceholder.typicode.com/posts/1",
+                    "protocol": "https",
+                    "host": [
+                        "jsonplaceholder",
+                        "typicode",
+                        "com"
+                    ],
+                    "path": [
+                        "posts",
+                        "1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "POST New Post",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"title\": \"QA Test Post\",\n    \"body\": \"This is a test post created in Postman.\",\n    \"userId\": 1\n}"
+                },
+                "url": {
+                    "raw": "https://jsonplaceholder.typicode.com/posts",
+                    "protocol": "https",
+                    "host": [
+                        "jsonplaceholder",
+                        "typicode",
+                        "com"
+                    ],
+                    "path": [
+                        "posts"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "PUT Update Post",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"id\": 1,\n    \"title\": \"Updated QA Test Post\",\n    \"body\": \"This post has been updated via PUT request.\",\n    \"userId\": 1\n}"
+                },
+                "url": {
+                    "raw": "https://jsonplaceholder.typicode.com/posts/1",
+                    "protocol": "https",
+                    "host": [
+                        "jsonplaceholder",
+                        "typicode",
+                        "com"
+                    ],
+                    "path": [
+                        "posts",
+                        "1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "DELETE Post",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "https://jsonplaceholder.typicode.com/posts/1",
+                    "protocol": "https",
+                    "host": [
+                        "jsonplaceholder",
+                        "typicode",
+                        "com"
+                    ],
+                    "path": [
+                        "posts",
+                        "1"
+                    ]
+                }
+            }
+        }
+    ]
+}
