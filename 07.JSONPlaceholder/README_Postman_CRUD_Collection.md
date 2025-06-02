@@ -41,10 +41,15 @@ This repository contains a Postman Collection that demonstrates basic API testin
 
 ---
 
-## 📸 Screenshots (Optional)
+## 📸 Screenshots 
 
-You can add screenshots of the requests and responses here for visual proof of your tests.
+![GET](https://github.com/user-attachments/assets/e68a3e6a-1b8d-4d6c-8f87-637bb4ad42e8)
 
----
+![POST](https://github.com/user-attachments/assets/25cbbc2f-2e58-4462-9b55-fcc763b4d57f)
+
+![PUT](https://github.com/user-attachments/assets/f0139268-ef8a-47ec-a1e4-4e0c33de0756)
+
+![DELETE](https://github.com/user-attachments/assets/378f80b9-9858-4e45-b25a-3aa1d252341a)
+
 
 Created with ☕ and curiosity by **Teodor Kostov**
