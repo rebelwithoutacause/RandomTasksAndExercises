@@ -1,0 +1,405 @@
+{
+  "info": {
+    "name": "Bookstore API",
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-1234567890ab",
+    "description": "Collection for testing a simple bookstore API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET All Books",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Books",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Books"
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response should be an array\", function () {",
+              "    pm.expect(pm.response.json()).to.be.an('array');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET Book by ID - Valid",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Books/1",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Books",
+            "1"
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response should contain ID 1\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.id).to.eql(1);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET Book by ID - Invalid",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Books/9999",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Books",
+            "9999"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST New Book - Valid",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\": 101, \"title\": \"New Book\", \"description\": \"Testing book\", \"pageCount\": 123, \"excerpt\": \"sample\", \"publishDate\": \"2025-06-11T00:00:00Z\"}"
+        },
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Books",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Books"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response should include new book title\", function () {",
+              "    pm.expect(pm.response.json().title).to.eql('New Book');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST New Book - Missing Title",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\": 102, \"description\": \"No title\", \"pageCount\": 111, \"excerpt\": \"missing\", \"publishDate\": \"2025-06-11T00:00:00Z\"}"
+        },
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Books",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Books"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Should return client error when title is missing\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([400, 422]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "PUT Update Book - Valid",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\": 1, \"title\": \"Updated Book\", \"description\": \"Updated\", \"pageCount\": 100, \"excerpt\": \"updated\", \"publishDate\": \"2025-06-11T00:00:00Z\"}"
+        },
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Books/1",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Books",
+            "1"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Update should return 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "PUT Update Book - Invalid ID",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\": 9999, \"title\": \"Invalid Update\", \"description\": \"No book\", \"pageCount\": 100, \"excerpt\": \"none\", \"publishDate\": \"2025-06-11T00:00:00Z\"}"
+        },
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Books/9999",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Books",
+            "9999"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Expect 404 on invalid update\", function () {",
+              "    pm.expect(pm.response.code).to.eql(404);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "DELETE Book - Valid",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Books/1",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Books",
+            "1"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Delete should return 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET Deleted Book",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Books/1",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Books",
+            "1"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Should return 404 for deleted book\", function () {",
+              "    pm.expect(pm.response.code).to.eql(404);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Schema Validation - GET All Books",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Books",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Books"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Each book has required fields\", function () {",
+              "    let jsonData = pm.response.json();",
+              "    jsonData.forEach(book => {",
+              "        pm.expect(book).to.have.property('id');",
+              "        pm.expect(book).to.have.property('title');",
+              "        pm.expect(book).to.have.property('description');",
+              "    });",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}
