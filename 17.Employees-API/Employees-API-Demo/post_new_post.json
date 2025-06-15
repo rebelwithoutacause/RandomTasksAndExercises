@@ -1,0 +1,10 @@
+{
+  "title": "Postman Practice Post",
+  "body": "This is a test post created for educational purposes.",
+  "userId": 5,
+  "tags": ["test", "postman", "dummy"],
+  "reactions": {
+    "likes": 10,
+    "dislikes": 1
+  }
+}
