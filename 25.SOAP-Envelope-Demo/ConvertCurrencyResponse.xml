@@ -1,0 +1,7 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ConvertCurrencyResponse xmlns="http://www.webserviceX.NET/">
+      <ConvertCurrencyResult>0.9223</ConvertCurrencyResult>
+    </ConvertCurrencyResponse>
+  </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,32 @@
+{
+  "info": {
+    "name": "SOAP Envelope Example",
+    "_postman_id": "demo-id",
+    "description": "Example SOAP request for currency conversion",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "ConvertCurrency",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<soap:Envelope xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>\n  <soap:Body>\n    <ConvertCurrency xmlns='http://www.webserviceX.NET/'>\n      <FromCurrency>USD</FromCurrency>\n      <ToCurrency>EUR</ToCurrency>\n    </ConvertCurrency>\n  </soap:Body>\n</soap:Envelope>"
+        },
+        "url": {
+          "raw": "https://www.example.com/soap",
+          "protocol": "https",
+          "host": ["www", "example", "com"],
+          "path": ["soap"]
+        }
+      }
+    }
+  ]
+}
