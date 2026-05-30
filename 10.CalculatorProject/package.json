@@ -1,0 +1,20 @@
+{
+  "name": "calculator-project",
+  "version": "1.0.0",
+  "description": "Simple calculator project for mutation testing practice",
+  "main": "src/calculator.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "^9.0.1",
+    "@stryker-mutator/jest-runner": "^9.0.1",
+    "jest": "^29.7.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": []
+}

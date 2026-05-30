@@ -1,0 +1,108 @@
+{
+    "info": {
+        "name": "JokeAPI Requests",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Random Joke",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://v2.jokeapi.dev/joke/Any",
+                    "protocol": "https",
+                    "host": [
+                        "v2",
+                        "jokeapi",
+                        "dev"
+                    ],
+                    "path": [
+                        "joke",
+                        "Any"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Programming Joke",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://v2.jokeapi.dev/joke/Programming",
+                    "protocol": "https",
+                    "host": [
+                        "v2",
+                        "jokeapi",
+                        "dev"
+                    ],
+                    "path": [
+                        "joke",
+                        "Programming"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Safe Single Joke",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://v2.jokeapi.dev/joke/Any?safe-mode&type=single",
+                    "protocol": "https",
+                    "host": [
+                        "v2",
+                        "jokeapi",
+                        "dev"
+                    ],
+                    "path": [
+                        "joke",
+                        "Any"
+                    ],
+                    "query": [
+                        {
+                            "key": "safe-mode",
+                            "value": ""
+                        },
+                        {
+                            "key": "type",
+                            "value": "single"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Advanced Joke Request",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://v2.jokeapi.dev/joke/Programming,Dark?blacklistFlags=nsfw,religious&type=twopart",
+                    "protocol": "https",
+                    "host": [
+                        "v2",
+                        "jokeapi",
+                        "dev"
+                    ],
+                    "path": [
+                        "joke",
+                        "Programming,Dark"
+                    ],
+                    "query": [
+                        {
+                            "key": "blacklistFlags",
+                            "value": "nsfw,religious"
+                        },
+                        {
+                            "key": "type",
+                            "value": "twopart"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

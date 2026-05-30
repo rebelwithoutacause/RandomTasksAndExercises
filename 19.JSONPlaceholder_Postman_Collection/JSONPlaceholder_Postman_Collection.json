@@ -1,0 +1,93 @@
+{
+  "info": {
+    "name": "JSONPlaceholder Basic Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Todo #1",
+      "request": {
+        "method": "GET",
+        "url": "https://jsonplaceholder.typicode.com/todos/1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "const todo = pm.response.json();",
+              "pm.test(\"Has expected keys\", () => {",
+              "    pm.expect(todo).to.have.all.keys(\"userId\",\"id\",\"title\",\"completed\");",
+              "});",
+              "pm.test(\"completed is boolean\", () => {",
+              "    pm.expect(todo.completed).to.be.a(\"boolean\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get User #1",
+      "request": {
+        "method": "GET",
+        "url": "https://jsonplaceholder.typicode.com/users/1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status is OK\", () => pm.response.to.have.status(200));",
+              "const user = pm.response.json();",
+              "pm.test(\"Name exists and is string\", () => {",
+              "    pm.expect(user.name).to.be.a(\"string\").and.not.be.empty;",
+              "});",
+              "pm.test(\"Has nested address with city\", () => {",
+              "    pm.expect(user).to.have.nested.property(\"address.city\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"foo\",\n  \"body\": \"bar\",\n  \"userId\": 1\n}"
+        },
+        "url": "https://jsonplaceholder.typicode.com/posts"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Created with status 201\", () => pm.response.to.have.status(201));",
+              "const post = pm.response.json();",
+              "pm.test(\"Response has an ID\", () => {",
+              "    pm.expect(post.id).to.be.a(\"number\");",
+              "});",
+              "pm.test(\"Title and body match sent\", () => {",
+              "    pm.expect(post.title).to.eql(\"foo\");",
+              "    pm.expect(post.body).to.eql(\"bar\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

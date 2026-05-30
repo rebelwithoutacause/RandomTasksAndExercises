@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day / Night</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+</head>
+<body class="night">
+
+  <div class="scene">
+    <div class="celestial"></div>
+    <div class="stars">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="panel">
+
+    <div class="row">
+      <span class="label">Light</span>
+      <div class="bulb" id="bulb">
+        <div class="bulb-glow"></div>
+        <svg viewBox="0 0 40 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 2C11.163 2 4 9.163 4 18c0 5.9 3.09 11.07 7.74 14.05L13 36v4h14v-4l1.26-3.95C32.91 29.07 36 23.9 36 18 36 9.163 28.837 2 20 2z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+          <rect x="13" y="40" width="14" height="4" rx="2" stroke="currentColor" stroke-width="2"/>
+          <rect x="15" y="44" width="10" height="4" rx="2" stroke="currentColor" stroke-width="2"/>
+          <line x1="20" y1="48" x2="20" y2="54" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="bulb-label" id="light-status"></span>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="label">Battery</span>
+      <div class="battery-wrap">
+        <div class="battery-bar">
+          <div class="battery-fill" id="battery-fill"></div>
+        </div>
+        <span class="battery-pct" id="battery-text"></span>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="label">Everything working?</span>
+      <span class="value" id="working-status"></span>
+    </div>
+
+    <div class="row">
+      <div class="radio-group">
+        <label><input type="radio" name="time" value="night" checked> Night</label>
+        <label><input type="radio" name="time" value="day"> Day</label>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
